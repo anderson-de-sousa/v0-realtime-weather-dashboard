@@ -1,5 +1,3 @@
-import type React from "react"
-
 export interface WeatherValues {
   altimeterSetting: number
   cloudBase: number
@@ -40,7 +38,7 @@ export interface WeatherData {
 
 export interface WeatherCardData {
   title: string
-  icon: React.ReactNode
+  icon: string
   value: string
   subtitle?: string
   color: string

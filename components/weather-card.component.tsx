@@ -10,7 +10,7 @@ export function WeatherCard({ data }: WeatherCardProps) {
     <Card className="bg-gray-900 border-gray-700">
       <CardHeader className="pb-3">
         <CardTitle className={`text-sm flex items-center gap-2 ${data.color}`}>
-          {data.icon}
+          <span className="text-lg">{data.icon}</span>
           {data.title}
         </CardTitle>
       </CardHeader>

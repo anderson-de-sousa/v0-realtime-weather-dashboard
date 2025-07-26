@@ -9,7 +9,7 @@ import { MainWeatherDisplay } from "../components/main-weather-display.component
 import { WeatherCard } from "../components/weather-card.component"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { MapPin, Clock } from "lucide-react"
+import { MapPin, Clock, CloudRain } from "lucide-react"
 
 export default function WeatherDashboard() {
   // State Management
@@ -88,9 +88,38 @@ export default function WeatherDashboard() {
     <div className="min-h-screen bg-black p-4">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-white">Dashboard Climático</h1>
-          <p className="text-gray-300">Monitore as condições climáticas em tempo real</p>
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="relative">
+              <CloudRain className="h-16 w-16 text-blue-400" />
+              <div className="absolute -top-2 -right-2 animate-pulse">
+                <div className="h-4 w-4 bg-yellow-400 rounded-full opacity-80"></div>
+              </div>
+            </div>
+            <div className="text-left">
+              <h1 className="text-4xl font-bold text-white leading-tight">Dashboard Climático</h1>
+              <div className="flex items-center gap-2 mt-1">
+                <div className="h-1 w-12 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
+                <div className="h-1 w-8 bg-gradient-to-r from-cyan-400 to-green-400 rounded-full"></div>
+                <div className="h-1 w-6 bg-gradient-to-r from-green-400 to-yellow-400 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+          <p className="text-gray-300 text-lg">Monitore as condições climáticas em tempo real com dados precisos</p>
+          <div className="flex items-center justify-center gap-6 text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <div className="h-2 w-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span>API Tomorrow.io</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse"></div>
+              <span>Dados em Tempo Real</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-2 w-2 bg-purple-400 rounded-full animate-pulse"></div>
+              <span>Atualização Automática</span>
+            </div>
+          </div>
         </div>
 
         {/* Coordinate Input */}
