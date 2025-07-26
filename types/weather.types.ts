@@ -1,5 +1,5 @@
 import type React from "react"
-// Interface Segregation Principle - Interfaces específicas
+
 export interface WeatherValues {
   altimeterSetting: number
   cloudBase: number
@@ -51,12 +51,43 @@ export interface TimerState {
   isActive: boolean
 }
 
-// Strategy Pattern - Interface para estratégias de busca
-export interface WeatherFetchStrategy {
-  fetchWeather(lat: number, lon: number): Promise<WeatherData>
+// Tipos específicos da API Tomorrow.io
+export interface TomorrowApiResponse {
+  data: {
+    time: string
+    values: {
+      cloudBase?: number
+      cloudCeiling?: number
+      cloudCover?: number
+      dewPoint?: number
+      humidity?: number
+      precipitationProbability?: number
+      pressureSeaLevel?: number
+      rainIntensity?: number
+      temperature?: number
+      temperatureApparent?: number
+      uvHealthConcern?: number
+      uvIndex?: number
+      visibility?: number
+      weatherCode?: number
+      windDirection?: number
+      windGust?: number
+      windSpeed?: number
+      altimeterSetting?: number
+      freezingRainIntensity?: number
+      pressureSurfaceLevel?: number
+      sleetIntensity?: number
+      snowIntensity?: number
+    }
+  }
+  location: {
+    lat: number
+    lon: number
+  }
 }
 
-// Factory Pattern - Interface para criação de cards
-export interface WeatherCardFactory {
-  createCard(data: WeatherValues): WeatherCardData[]
+export enum CircuitBreakerState {
+  CLOSED = "CLOSED",
+  OPEN = "OPEN",
+  HALF_OPEN = "HALF_OPEN",
 }

@@ -1,4 +1,3 @@
-// Composition Pattern - Display principal do clima
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import type { WeatherValues } from "../types/weather.types"

@@ -22,7 +22,7 @@ export default function WeatherDashboard() {
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
 
   // Dependency Injection
-  const weatherFacade = new WeatherFacade()
+  const [weatherFacade] = useState(() => new WeatherFacade())
   const cardFactory = new DetailedWeatherCardFactory()
 
   // Business Logic
@@ -51,7 +51,7 @@ export default function WeatherDashboard() {
         () => setRefreshTimer(0),
       )
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao buscar dados do clima")
+      setError(err instanceof Error ? err.message : "Erro ao consultar dados do clima")
     } finally {
       setLoading(false)
     }
@@ -61,6 +61,8 @@ export default function WeatherDashboard() {
     if (refreshTimer > 0 || !weatherData) return
 
     setLoading(true)
+    setError(null)
+
     try {
       const data = await weatherFacade.fetchWeatherData(weatherData.location)
       setWeatherData(data)
@@ -71,7 +73,7 @@ export default function WeatherDashboard() {
         () => setRefreshTimer(0),
       )
     } catch (err) {
-      setError("Erro ao atualizar dados do clima")
+      setError(err instanceof Error ? err.message : "Erro ao atualizar dados do clima")
     } finally {
       setLoading(false)
     }

@@ -1,10 +1,8 @@
-// Single Responsibility Principle - Serviço específico para timer
 import type { TimerState } from "../types/weather.types"
 
 export class TimerService {
   private static instance: TimerService
   private timers: Map<string, NodeJS.Timeout> = new Map()
-  private callbacks: Map<string, (state: TimerState) => void> = new Map()
 
   static getInstance(): TimerService {
     if (!TimerService.instance) {
@@ -17,7 +15,6 @@ export class TimerService {
     this.stopTimer(id)
 
     let remainingTime = duration
-    this.callbacks.set(id, onTick)
 
     const interval = setInterval(() => {
       remainingTime--
@@ -38,7 +35,6 @@ export class TimerService {
     if (timer) {
       clearInterval(timer)
       this.timers.delete(id)
-      this.callbacks.delete(id)
     }
   }
 

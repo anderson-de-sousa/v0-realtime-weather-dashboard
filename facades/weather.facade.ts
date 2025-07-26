@@ -1,21 +1,19 @@
-// Facade Pattern - Interface simplificada
-import type { WeatherFetchStrategy, WeatherData, Location } from "../types/weather.types"
-import { MockWeatherFetchStrategy } from "../strategies/weather-fetch.strategy"
+import type { WeatherData, Location } from "../types/weather.types"
+import { WeatherApiService } from "../services/weather-api.service"
 import { TimerService } from "../services/timer.service"
 
 export class WeatherFacade {
-  private strategy: WeatherFetchStrategy
+  private weatherApiService: WeatherApiService
   private timerService: TimerService
   private readonly REFRESH_COOLDOWN = 180 // 3 minutos
 
-  constructor(strategy?: WeatherFetchStrategy) {
-    this.strategy = strategy || new MockWeatherFetchStrategy()
+  constructor() {
+    this.weatherApiService = new WeatherApiService()
     this.timerService = TimerService.getInstance()
   }
 
   async fetchWeatherData(location: Location): Promise<WeatherData> {
-    this.validateCoordinates(location)
-    return await this.strategy.fetchWeather(location.lat, location.lon)
+    return await this.weatherApiService.fetchWeatherData(location)
   }
 
   startRefreshTimer(onTick: (remainingTime: number) => void, onComplete?: () => void): void {
@@ -33,21 +31,5 @@ export class WeatherFacade {
 
   formatTime(seconds: number): string {
     return this.timerService.formatTime(seconds)
-  }
-
-  private validateCoordinates(location: Location): void {
-    const { lat, lon } = location
-
-    if (isNaN(lat) || isNaN(lon)) {
-      throw new Error("Coordenadas devem ser números válidos")
-    }
-
-    if (lat < -90 || lat > 90) {
-      throw new Error("Latitude deve estar entre -90 e 90")
-    }
-
-    if (lon < -180 || lon > 180) {
-      throw new Error("Longitude deve estar entre -180 e 180")
-    }
   }
 }

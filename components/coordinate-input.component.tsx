@@ -1,6 +1,5 @@
 "use client"
 
-// Single Responsibility - Componente específico para input de coordenadas
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -46,7 +45,9 @@ export function CoordinateInput({
           <MapPin className="h-5 w-5" />
           Localização
         </CardTitle>
-        <CardDescription className="text-gray-300">Insira as coordenadas para obter dados climáticos</CardDescription>
+        <CardDescription className="text-gray-300">
+          Insira as coordenadas da sua cidade para consultar o clima
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -97,12 +98,12 @@ export function CoordinateInput({
             {loading ? (
               <>
                 <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                Carregando...
+                Consultando...
               </>
             ) : (
               <>
                 <Cloud className="mr-2 h-4 w-4" />
-                Buscar Clima
+                Consultar Clima
               </>
             )}
           </Button>

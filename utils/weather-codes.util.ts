@@ -42,3 +42,17 @@ export const getWindDirection = (degrees: number): string => {
   ]
   return directions[Math.round(degrees / 22.5) % 16]
 }
+
+export const getUVDescription = (uvIndex: number): string => {
+  if (uvIndex <= 2) return "Baixo"
+  if (uvIndex <= 5) return "Moderado"
+  if (uvIndex <= 7) return "Alto"
+  if (uvIndex <= 10) return "Muito Alto"
+  return "Extremo"
+}
+
+export const formatTime = (seconds: number): string => {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs.toString().padStart(2, "0")}`
+}
