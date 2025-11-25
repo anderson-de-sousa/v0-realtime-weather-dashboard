@@ -1,12 +1,13 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import type { WeatherData, Location } from "../types/weather.types"
-import { WeatherFacade } from "../facades/weather.facade"
-import { DetailedWeatherCardFactory } from "../factories/weather-card.factory"
-import { CoordinateInput } from "../components/coordinate-input.component"
-import { MainWeatherDisplay } from "../components/main-weather-display.component"
-import { WeatherCard } from "../components/weather-card.component"
+import type { WeatherData, Location } from "@/types/weather.types"
+import { WeatherFacade } from "@/facades/weather.facade"
+import { DetailedWeatherCardFactory } from "@/factories/weather-card.factory"
+import { CoordinateInput } from "@/components/coordinate-input.component"
+import { MainWeatherDisplay } from "@/components/main-weather-display.component"
+import { WeatherCard } from "@/components/weather-card.component"
+import { WeatherMap } from "@/components/weather-map.component"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { MapPin, Clock, CloudRain } from "lucide-react"
@@ -163,6 +164,9 @@ export default function WeatherDashboard() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Google Maps Component */}
+            <WeatherMap latitude={weatherData.location.lat} longitude={weatherData.location.lon} />
 
             {/* Main Weather Info */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
