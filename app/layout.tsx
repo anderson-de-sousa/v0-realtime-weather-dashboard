@@ -5,7 +5,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Dashboard Climático",
   description: "Dashboard em tempo real para visualização de dados climáticos",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
